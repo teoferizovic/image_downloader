@@ -1,2 +1,5 @@
 .idea/
 images/
+glide.lock
+vendor/
+config.toml

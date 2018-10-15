@@ -1,0 +1,3 @@
+# filename: config.toml
+
+filePath = "/home/teo/go/src/image_downloader/images/"

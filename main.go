@@ -2,12 +2,24 @@ package main
 
 import (
 	"fmt"
+	"github.com/BurntSushi/toml"
 	"image_downloader/helper"
+	"image_downloader/model"
 	"io"
 	"log"
 	"net/http"
 	"os"
 )
+
+var conf model.Config
+
+func init(){
+
+	if _, err := toml.DecodeFile("./config.toml", &conf); err != nil {
+		fmt.Println(err)
+	}
+	//fmt.Printf("%#v\n", conf)
+}
 
 func main() {
 
@@ -28,7 +40,8 @@ func main() {
 	}
 
 	//open a file for writing
-	localUrl := "/home/teo/go/src/image_downloader/images/"+fileName
+	localUrl := conf.FilePath+fileName
+
 	file, err := os.Create(localUrl)
 	if err != nil {
 		log.Fatal(err)
