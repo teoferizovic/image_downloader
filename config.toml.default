@@ -1,3 +1,4 @@
 # filename: config.toml
 
-filePath = "/home/teo/go/src/image_downloader/images/"
+imagePath = "/home/teo/go/src/image_downloader/images/"
+filePath = "/home/teo/go/src/image_downloader/files/"
