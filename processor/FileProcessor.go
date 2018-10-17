@@ -6,6 +6,7 @@ import (
 	"image_downloader/helper"
 	"image_downloader/model"
 	"io"
+	"log"
 	"net/http"
 	"os"
 )
@@ -13,6 +14,7 @@ import (
 type CsvLine struct {
 	ImageUrl string
 }
+
 
 func ReadFile(conf model.Config)  (error,[]string) {
 
@@ -84,7 +86,31 @@ func DownloadImages(conf model.Config,imagePaths[]string) error {
 		file.Close()
 	}
 
+	err := WriteLogs(conf)
+
+	if err != nil {
+		return err
+	}
+
+
 	fmt.Println("Success!")
 	return nil
 
+}
+
+func WriteLogs(conf model.Config) error {
+
+	f, err := os.OpenFile(conf.LogPath, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+
+	if err != nil {
+		//log.Fatalf("error opening file: %v", err)
+		return err
+	}
+
+	defer f.Close()
+
+	log.SetOutput(f)
+	log.Println("Sucessfully download images!")
+
+	return nil
 }

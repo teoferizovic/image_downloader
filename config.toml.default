@@ -2,3 +2,4 @@
 
 imagePath = "/home/teo/go/src/image_downloader/images/"
 filePath = "/home/teo/go/src/image_downloader/files/"
+logPath = "/home/teo/go/src/image_downloader/logs/logs.txt"
